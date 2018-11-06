@@ -1,6 +1,13 @@
-/**
+/*
+ * This app is a helper for study Java.
+ *
  * Created by Mikhail on 15.10.2018.
  */
+
+import com.qoppa.pdf.PDFException;
+import com.qoppa.pdf.dom.IPDFDocument;
+import com.qoppa.pdf.source.PDFContent;
+import com.qoppa.pdf.source.PDFSource;
 import com.qoppa.pdfViewerFX.PDFViewer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -14,6 +21,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.text.Text;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.io.ScratchFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.icepdf.core.pobjects.ViewerPreferences;
 
@@ -22,17 +31,20 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
 
 public class Main extends Application{
-    Scene scene1, scene2, scene3;
+    private Scene scene1, scene2, scene3;
     private PDFViewer m_PDFViewer;
 
-    public BorderPane fail(String docname) throws IOException {
-        /*String file = docname + ".pdf";
+    /*public BorderPane fail(String docname) throws IOException {
+        String file = docname + ".pdf";
         PDDocument doc = PDDocument.load(new File(file));
         BorderPane pane = new BorderPane();
-        pane.getChildren().add(doc);*/
-    }
+        pane.getChildren().add(doc);
+    }*/
 
     public static void main(String[] args) {
 
@@ -49,14 +61,55 @@ public class Main extends Application{
         oop.setLayoutY(25);
         oop.setMaxWidth(50);
         oop.setMaxHeight(16);
-        oop.setOnAction(e -> stage.setScene(scene2));
+        oop.setOnAction(event -> {m_PDFViewer = new PDFViewer();
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            InputStream input =
+                    getClass().getResourceAsStream("coffee-bean-icon.png");
+            Image image = new Image(input);
+            ImageView imageView = new ImageView(image);
+            Button button2 = new Button("Go back to MENU");
+            button2.setGraphic(imageView);
+            button2.setOnAction(e -> stage.setScene(scene1));
+
+            borderPane.setRight(button2);
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("OOP");
+            stage.setScene(scene);
+        });
 
         Button collections = new Button("Collections");
         collections.setLayoutX(20);
         collections.setLayoutY(25);
         collections.setMaxWidth(50);
         collections.setMaxHeight(16);
-        collections.setOnAction(e -> stage.setScene(scene3));
+        collections.setOnAction(event -> {
+            //ScratchFile file = new ScratchFile(new File(name));
+            String doc = "OOP";
+            //COSDocument document = new COSDocument(file);
+            m_PDFViewer = new PDFViewer();
+            //File doc = new File("OOP.PDF");
+            try {
+                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\OOP.PDF");
+            } catch (PDFException e) {
+                e.printStackTrace();
+            }
+            //m_PDFViewer.getDocument().getPDFSource().getName(). ;
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            InputStream input =
+                    getClass().getResourceAsStream("coffee-bean-icon.png");
+            Image image = new Image(input);
+            ImageView imageView = new ImageView(image);
+            Button button2 = new Button("Go back to MENU");
+            button2.setGraphic(imageView);
+            button2.setOnAction(e -> stage.setScene(scene1));
+
+            borderPane.setRight(button2);
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Collections");
+            stage.setScene(scene);
+        });
 
         // Меню:
 
@@ -82,7 +135,7 @@ public class Main extends Application{
         bottom.setRight(button2);
         root.setBottom(bottom);
 
-        scene2 = new Scene(root, 600, 600);
+        //scene2 = new Scene(root, 600, 600);
 
         // Коллекции:
 
