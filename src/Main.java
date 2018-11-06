@@ -39,67 +39,80 @@ public class Main extends Application{
     private Scene scene1, scene2, scene3;
     private PDFViewer m_PDFViewer;
 
-    public static void main(String[] args) {
+    private void openPDFile(String fileName){ // Открыть PDF
+        try {
+            m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\" + fileName + ".PDF");
+        } catch (PDFException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private Button backButton(){ // Кнопка возврата
+        InputStream input =
+                getClass().getResourceAsStream("coffee-bean-icon.png");
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+        Button button2 = new Button("MENU");
+        button2.setGraphic(imageView);
+        return button2;
+    }
+
+    private void setSizeButton(Button btn){ // Размеры кнопки
+        btn.setLayoutX(20);
+        btn.setLayoutY(25);
+        btn.setMaxWidth(150);
+        btn.setMaxHeight(16);
+    }
+
+    public static void main(String[] args) {
         Application.launch(args);
     }
 
     @Override
     public void start(Stage stage) {
+        Button button2 = backButton();
+        button2.setOnAction(e -> stage.setScene(scene1));
+
         // Кнопки:
         Button oop = new Button("OOP");
-        oop.setLayoutX(20);
-        oop.setLayoutY(25);
-        oop.setMaxWidth(150);
-        oop.setMaxHeight(16);
+        setSizeButton(oop);
         oop.setOnAction(event -> {
             m_PDFViewer = new PDFViewer();
-            try {
-                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\OOP.PDF");
-            } catch (PDFException e) {
-                e.printStackTrace();
-            }
+            openPDFile("OOP");
             BorderPane borderPane = new BorderPane(m_PDFViewer);
 
-            InputStream input =
-                    getClass().getResourceAsStream("coffee-bean-icon.png");
-            Image image = new Image(input);
-            ImageView imageView = new ImageView(image);
-            Button button2 = new Button("MENU");
-            button2.setGraphic(imageView);
-            button2.setOnAction(e -> stage.setScene(scene1));
-
             borderPane.setRight(button2);
+
             Scene scene = new Scene(borderPane);
             stage.setTitle("OOP");
             stage.setScene(scene);
         });
 
         Button collections = new Button("Collections");
-        collections.setLayoutX(20);
-        collections.setLayoutY(25);
-        collections.setMaxWidth(150);
-        collections.setMaxHeight(16);
+        setSizeButton(collections);
         collections.setOnAction(event -> {
             m_PDFViewer = new PDFViewer();
-            try {
-                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\Collections.PDF");
-            } catch (PDFException e) {
-                e.printStackTrace();
-            }
+            openPDFile("Collections");
             BorderPane borderPane = new BorderPane(m_PDFViewer);
 
-            InputStream input =
-                    getClass().getResourceAsStream("coffee-bean-icon.png");
-            Image image = new Image(input);
-            ImageView imageView = new ImageView(image);
-            Button button2 = new Button("MENU");
-            button2.setGraphic(imageView);
-            button2.setOnAction(e -> stage.setScene(scene1));
-
             borderPane.setRight(button2);
+
             Scene scene = new Scene(borderPane);
             stage.setTitle("Collections");
+            stage.setScene(scene);
+        });
+
+        Button annotations = new Button("Annotations");
+        setSizeButton(annotations);
+        annotations.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Annotations");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Annotations");
             stage.setScene(scene);
         });
 
@@ -107,7 +120,7 @@ public class Main extends Application{
 
         // Меню:
         VBox vbox = new VBox(5);
-        vbox.getChildren().addAll(oop, collections);
+        vbox.getChildren().addAll(oop, collections, annotations);
         scene1 = new Scene(vbox, 600, 600);
 
         /* Создание кнопки возврата:
