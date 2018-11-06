@@ -59,9 +59,15 @@ public class Main extends Application{
         Button oop = new Button("OOP");
         oop.setLayoutX(20);
         oop.setLayoutY(25);
-        oop.setMaxWidth(50);
+        oop.setMaxWidth(150);
         oop.setMaxHeight(16);
-        oop.setOnAction(event -> {m_PDFViewer = new PDFViewer();
+        oop.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            try {
+                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\OOP.PDF");
+            } catch (PDFException e) {
+                e.printStackTrace();
+            }
             BorderPane borderPane = new BorderPane(m_PDFViewer);
 
             InputStream input =
@@ -81,20 +87,15 @@ public class Main extends Application{
         Button collections = new Button("Collections");
         collections.setLayoutX(20);
         collections.setLayoutY(25);
-        collections.setMaxWidth(50);
+        collections.setMaxWidth(150);
         collections.setMaxHeight(16);
         collections.setOnAction(event -> {
-            //ScratchFile file = new ScratchFile(new File(name));
-            String doc = "OOP";
-            //COSDocument document = new COSDocument(file);
             m_PDFViewer = new PDFViewer();
-            //File doc = new File("OOP.PDF");
             try {
-                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\OOP.PDF");
+                m_PDFViewer.loadPDF("C:\\\\Users\\\\Михаил\\\\Desktop\\\\JavaForDummies\\\\src\\\\Collections.PDF");
             } catch (PDFException e) {
                 e.printStackTrace();
             }
-            //m_PDFViewer.getDocument().getPDFSource().getName(). ;
             BorderPane borderPane = new BorderPane(m_PDFViewer);
 
             InputStream input =
