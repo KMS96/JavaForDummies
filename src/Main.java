@@ -39,13 +39,6 @@ public class Main extends Application{
     private Scene scene1, scene2, scene3;
     private PDFViewer m_PDFViewer;
 
-    /*public BorderPane fail(String docname) throws IOException {
-        String file = docname + ".pdf";
-        PDDocument doc = PDDocument.load(new File(file));
-        BorderPane pane = new BorderPane();
-        pane.getChildren().add(doc);
-    }*/
-
     public static void main(String[] args) {
 
         Application.launch(args);
@@ -53,9 +46,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage) {
-
         // Кнопки:
-
         Button oop = new Button("OOP");
         oop.setLayoutX(20);
         oop.setLayoutY(25);
@@ -74,7 +65,7 @@ public class Main extends Application{
                     getClass().getResourceAsStream("coffee-bean-icon.png");
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
-            Button button2 = new Button("Go back to MENU");
+            Button button2 = new Button("MENU");
             button2.setGraphic(imageView);
             button2.setOnAction(e -> stage.setScene(scene1));
 
@@ -102,7 +93,7 @@ public class Main extends Application{
                     getClass().getResourceAsStream("coffee-bean-icon.png");
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
-            Button button2 = new Button("Go back to MENU");
+            Button button2 = new Button("MENU");
             button2.setGraphic(imageView);
             button2.setOnAction(e -> stage.setScene(scene1));
 
@@ -112,33 +103,33 @@ public class Main extends Application{
             stage.setScene(scene);
         });
 
-        // Меню:
 
+
+        // Меню:
         VBox vbox = new VBox(5);
         vbox.getChildren().addAll(oop, collections);
         scene1 = new Scene(vbox, 600, 600);
 
-        // Создание кнопки возврата:
-
+        /* Создание кнопки возврата:
         InputStream input =
                 getClass().getResourceAsStream("coffee-bean-icon.png");
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         Button button2 = new Button("Go back to MENU");
         button2.setGraphic(imageView);
-        button2.setOnAction(e -> stage.setScene(scene1));
+        button2.setOnAction(e -> stage.setScene(scene1));*/
 
         // ООП:
 
-        // Для расположения кнопки возврата в правом ниднем углу
+        /* Для расположения кнопки возврата в правом ниднем углу
         BorderPane root = new BorderPane();
         BorderPane bottom = new BorderPane();
         bottom.setRight(button2);
-        root.setBottom(bottom);
+        root.setBottom(bottom);*/
 
         //scene2 = new Scene(root, 600, 600);
 
-        // Коллекции:
+        /* Коллекции:
 
         Button button3 = new Button("Go back to MENU");
         button3.setGraphic(imageView);
@@ -151,7 +142,7 @@ public class Main extends Application{
         bottom1.setRight(button3);
         root1.setBottom(bottom1);
 
-        scene3 = new Scene(root1, 600, 600);
+        scene3 = new Scene(root1, 600, 600);*/
 
         stage.setScene(scene1);
         stage.setTitle("JavaForDummies");
