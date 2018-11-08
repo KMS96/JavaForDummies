@@ -10,13 +10,12 @@ import com.qoppa.pdf.source.PDFContent;
 import com.qoppa.pdf.source.PDFSource;
 import com.qoppa.pdfViewerFX.PDFViewer;
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.geometry.*;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
@@ -47,14 +46,18 @@ public class Main extends Application{
         }
     }
 
-    private Button backButton(){ // Кнопка возврата
+    private Button setImgButton(String nameImg, String label){
         InputStream input =
-                getClass().getResourceAsStream("coffee-bean-icon.png");
+                getClass().getResourceAsStream(nameImg + ".png");
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
-        Button button2 = new Button("MENU");
-        button2.setGraphic(imageView);
-        return button2;
+        Button button = new Button(label);
+        button.setGraphic(imageView);
+        return button;
+    }
+
+    private Button backButton(){ // Кнопка возврата
+        return setImgButton("coffee-bean-icon", "MENU");
     }
 
     private void setSizeButton(Button btn){ // Размеры кнопки
@@ -74,35 +77,7 @@ public class Main extends Application{
         button2.setOnAction(e -> stage.setScene(scene1));
 
         // Кнопки:
-        Button oop = new Button("OOP");
-        setSizeButton(oop);
-        oop.setOnAction(event -> {
-            m_PDFViewer = new PDFViewer();
-            openPDFile("OOP");
-            BorderPane borderPane = new BorderPane(m_PDFViewer);
-
-            borderPane.setRight(button2);
-
-            Scene scene = new Scene(borderPane);
-            stage.setTitle("OOP");
-            stage.setScene(scene);
-        });
-
-        Button collections = new Button("Collections");
-        setSizeButton(collections);
-        collections.setOnAction(event -> {
-            m_PDFViewer = new PDFViewer();
-            openPDFile("Collections");
-            BorderPane borderPane = new BorderPane(m_PDFViewer);
-
-            borderPane.setRight(button2);
-
-            Scene scene = new Scene(borderPane);
-            stage.setTitle("Collections");
-            stage.setScene(scene);
-        });
-
-        Button annotations = new Button("Annotations");
+        Button annotations = setImgButton("Java-icon-main", "Annotations");
         setSizeButton(annotations);
         annotations.setOnAction(event -> {
             m_PDFViewer = new PDFViewer();
@@ -116,46 +91,224 @@ public class Main extends Application{
             stage.setScene(scene);
         });
 
+        Button collections = setImgButton("Java-icon-main", "Collections");
+        setSizeButton(collections);
+        collections.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Collections");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Collections");
+            stage.setScene(scene);
+        });
+
+        Button concurrent = setImgButton("Java-icon-main", "Concurrent");
+        setSizeButton(concurrent);
+        concurrent.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Concurrent");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Concurrent");
+            stage.setScene(scene);
+        });
+
+        Button oop = setImgButton("Java-icon-main", "OOP");
+        setSizeButton(oop);
+        oop.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("OOP");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("OOP");
+            stage.setScene(scene);
+        });
+
+        Button exceptions = setImgButton("Java-icon-main", "Exceptions");
+        setSizeButton(exceptions);
+        exceptions.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Exceptions");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Exceptions");
+            stage.setScene(scene);
+        });
+
+        Button git = setImgButton("Java-icon-main", "Git");
+        setSizeButton(git);
+        git.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Git");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Git");
+            stage.setScene(scene);
+        });
+
+        Button input_output = setImgButton("Java-icon-main", "InputOutput");
+        setSizeButton(input_output);
+        input_output.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("InputOutput");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("InputOutput");
+            stage.setScene(scene);
+        });
+
+        Button servlet = setImgButton("Java-icon-main", "Java_EE_Servlet_API");
+        setSizeButton(servlet);
+        servlet.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Java_EE_Servlet_API");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Java_EE_Servlet_API");
+            stage.setScene(scene);
+        });
+
+        Button jdbc = setImgButton("Java-icon-main", "JDBC");
+        setSizeButton(jdbc);
+        jdbc.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("JDBC");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("JDBC");
+            stage.setScene(scene);
+        });
+
+        Button jUnit = setImgButton("Java-icon-main", "JUnit");
+        setSizeButton(jUnit);
+        jUnit.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("JUnit");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("JUnit");
+            stage.setScene(scene);
+        });
+
+        Button log4j = setImgButton("Java-icon-main", "Log4j");
+        setSizeButton(log4j);
+        log4j.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Log4j");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Log4j");
+            stage.setScene(scene);
+        });
+
+        Button maven = setImgButton("Java-icon-main", "Maven");
+        setSizeButton(maven);
+        maven.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("Maven");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("Maven");
+            stage.setScene(scene);
+        });
+
+        Button sql = setImgButton("Java-icon-main", "SQL");
+        setSizeButton(sql);
+        sql.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("SQL");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("SQL");
+            stage.setScene(scene);
+        });
+
+        Button string = setImgButton("Java-icon-main", "String");
+        setSizeButton(string);
+        string.setOnAction(event -> {
+            m_PDFViewer = new PDFViewer();
+            openPDFile("String");
+            BorderPane borderPane = new BorderPane(m_PDFViewer);
+
+            borderPane.setRight(button2);
+
+            Scene scene = new Scene(borderPane);
+            stage.setTitle("String");
+            stage.setScene(scene);
+        });
 
 
         // Меню:
-        VBox vbox = new VBox(5);
-        vbox.getChildren().addAll(oop, collections, annotations);
-        scene1 = new Scene(vbox, 600, 600);
-
-        /* Создание кнопки возврата:
         InputStream input =
-                getClass().getResourceAsStream("coffee-bean-icon.png");
+                getClass().getResourceAsStream("background.png");
         Image image = new Image(input);
-        ImageView imageView = new ImageView(image);
-        Button button2 = new Button("Go back to MENU");
-        button2.setGraphic(imageView);
-        button2.setOnAction(e -> stage.setScene(scene1));*/
 
-        // ООП:
+        VBox vbox = new VBox(50);
+        vbox.setId("VBOX");
+        VBox vbox1 = new VBox(12);
+        VBox vbox2 = new VBox(12);
+        HBox hBox1 = new HBox(7);
+        HBox hBox2 = new HBox(7);
+        HBox hBox3 = new HBox(7);
+        HBox hBox4 = new HBox(7);
+        hBox1.getChildren().addAll(annotations, collections, concurrent, exceptions);
+        hBox2.getChildren().addAll(input_output, servlet, oop, string);
+        hBox1.setAlignment(Pos.CENTER);
+        hBox2.setAlignment(Pos.CENTER);
+        vbox1.getChildren().addAll(hBox1, hBox2);
+        hBox3.getChildren().addAll(git, jdbc, jUnit, log4j);
+        hBox4.getChildren().addAll(maven, sql, string);
+        hBox3.setAlignment(Pos.CENTER);
+        hBox4.setAlignment(Pos.CENTER);
+        vbox2.getChildren().addAll(hBox3, hBox4);
+        vbox.getChildren().addAll(vbox1, vbox2);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(20.0));
+        /*BackgroundImage myBI= new BackgroundImage(new Image("background.jpg",512,512,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        vbox.setBackground(new Background(myBI));*/
 
-        /* Для расположения кнопки возврата в правом ниднем углу
-        BorderPane root = new BorderPane();
-        BorderPane bottom = new BorderPane();
-        bottom.setRight(button2);
-        root.setBottom(bottom);*/
+        scene1 = new Scene(vbox, 512, 512);
 
-        //scene2 = new Scene(root, 600, 600);
-
-        /* Коллекции:
-
-        Button button3 = new Button("Go back to MENU");
-        button3.setGraphic(imageView);
-        button3.setOnAction(e -> stage.setScene(scene1));
-
-
-        // Для расположения кнопки возврата в правом нижнем углу
-        BorderPane root1 = new BorderPane();
-        BorderPane bottom1 = new BorderPane();
-        bottom1.setRight(button3);
-        root1.setBottom(bottom1);
-
-        scene3 = new Scene(root1, 600, 600);*/
+        //scene1.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        scene1.getStylesheets().add("style.css");
 
         stage.setScene(scene1);
         stage.setTitle("JavaForDummies");
